@@ -30,3 +30,15 @@ vim.keymap.set("n", "<leader>fv", function()
     },
   })
 end, { desc = "Terminal (Vertical)" })
+
+-- Fix all shifted number keys in insert and command mode
+for i = 1, 9 do
+  local shifted = ({ "!", "@", "#", "$", "%", "^", "&", "*", "(" })[i]
+  vim.keymap.set({ "i", "c" }, "<S-" .. i .. ">", shifted, { silent = true })
+end
+vim.keymap.set({ "i", "c" }, "<S-0>", ")", { silent = true })
+
+-- Search mode (Cmdline mode)
+vim.keymap.set("c", "<S-6>", "^", { desc = "Shift+6 in search" })
+vim.keymap.set("c", "<S-minus>", "_", { desc = "Shift+- in search" })
+-- Add others as needed
